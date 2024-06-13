@@ -184,7 +184,7 @@ public class GuestBookDaoImple implements GuestBookDao {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return null;
+		return vo;
 	}
 	
 	

@@ -62,7 +62,10 @@ public class guestServlet extends BaseServlet {
 			Long no = Long.parseLong(req.getParameter("no"));
 			GuestBookDao dao = new GuestBookDaoImple(dbuser, dbpass);
 			GuestBookVo vo = dao.get(no);
-			if (vo != null && vo.getPass().equals(password)){
+			System.out.println(password);
+			System.out.println(no);
+			System.out.println(vo);
+			if (vo.getPass().equals(password)){
 			boolean success = dao.delete(password, no);
 			if (success){
 				System.out.println("DELETE SUCCESS");
