@@ -32,6 +32,14 @@ public class UserVo {
 		this.email = email;
 		this.gender = gender;
 	}
+	
+	
+
+	public UserVo(String password, String email) {
+		super();
+		this.password = password;
+		this.email = email;
+	}
 
 	// Getters and Setters
 	public Long getNo() {

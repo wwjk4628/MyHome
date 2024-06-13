@@ -93,7 +93,7 @@ public class UsersDaoOracleImpl extends BaseDao implements UsersDao {
 		UserVo userVo = null;
 		try {
 			conn = getConnection();
-			String sql = "SELECT no, name, email, gender FROM users " +
+			String sql = "SELECT no, name, email, gender, password FROM users " +
 					"WHERE email=? AND password = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -106,9 +106,10 @@ public class UsersDaoOracleImpl extends BaseDao implements UsersDao {
 				String name = rs.getString(2);
 				String email = rs.getString(3);
 				String gender = rs.getString(4);
+				String pass = rs.getString(5);
 				userVo = new UserVo(no, 
 						name, 
-						null, 
+						pass, 
 						email, 
 						gender, 
 						null);
