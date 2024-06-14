@@ -13,10 +13,18 @@ String dbpass = context.getInitParameter("dbpass");
 <!DOCTYPE html>
 <html>
 <head>
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/guestbook.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>방명록</title>
 </head>
 <body>
+	
+	<div id="container">
+	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
+	<jsp:include page="/WEB-INF/views/includes/navigation.jsp" />
+	
+	<div id="wrapper">
+	<div id="content">
 	<form action="<%= request.getContextPath() %>/gb" method="POST">
 	<input type='hidden' name="a" value="add">
 		<table border=1 width=500>
@@ -73,6 +81,9 @@ String dbpass = context.getInitParameter("dbpass");
 	<%
 	}
 	%>
-
+	</div>
+	</div>
+	<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
+	</div>
 </body>
 </html>

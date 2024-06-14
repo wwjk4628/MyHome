@@ -1,7 +1,6 @@
-<%@ page language="java"
-	contentType="text/html;
+<%@ page language="java" contentType="text/html;
 	charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +10,9 @@
 <body>
 	<h1>Join Success</h1>
 	<p>가입해 주셔서 감사합니다.</p>
+	<p>
+		<a href="<%=request.getContextPath()%>/">My Home</a>
+	</p>
 </body>
 </html>
 

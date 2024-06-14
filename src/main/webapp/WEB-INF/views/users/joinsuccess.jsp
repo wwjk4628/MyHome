@@ -11,6 +11,7 @@
 <body>
 	<h1>Login Success</h1>
 	<p>로그인 성공.</p>
+	<p><a href="<%=request.getContextPath()%>/">My Home</a></p>
 </body>
 </html>
 
