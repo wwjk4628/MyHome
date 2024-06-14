@@ -25,13 +25,13 @@
 		<div id="wrapper">
 			<div id="content">
 				<!-- Content 영역 -->
-				<p>
+				<%-- <p>
 					<a href="<%=request.getContextPath()%>/users?a=loginform">로그인</a>
 				</p>
 				<p>
 					<a href="<%=request.getContextPath()%>/users?a=joinform">회원가입</a>
 				</p>
-
+ --%>
 			</div>
 		</div>
 		<%@ include file="/WEB-INF/views/includes/footer.jsp"%>

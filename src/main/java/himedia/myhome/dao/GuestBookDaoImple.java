@@ -57,7 +57,7 @@ public class GuestBookDaoImple implements GuestBookDao {
 			//	statment 생성
 			stmt = conn.createStatement();
 			//		쿼리 전송
-			String sql = "SELECT * FROM guestbook"; 
+			String sql = "SELECT * FROM guestbook ORDER BY reg_date"; 
 				//	결과 셋
 			rs = stmt.executeQuery(sql);
 				//	결과 셋 -> 자바 객체로 전환
