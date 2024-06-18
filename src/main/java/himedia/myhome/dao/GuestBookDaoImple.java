@@ -49,47 +49,47 @@ public class GuestBookDaoImple implements GuestBookDao {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		
+
 		List<GuestBookVo> list = new ArrayList<GuestBookVo>();
 		try {
-			//	connection
+			// connection
 			conn = getConnection();
-			//	statment 생성
+			// statment 생성
 			stmt = conn.createStatement();
-			//		쿼리 전송
-			String sql = "SELECT * FROM guestbook ORDER BY reg_date"; 
-				//	결과 셋
+			// 쿼리 전송
+			String sql = "SELECT * FROM guestbook ORDER BY reg_date";
+			// 결과 셋
 			rs = stmt.executeQuery(sql);
-				//	결과 셋 -> 자바 객체로 전환
+			// 결과 셋 -> 자바 객체로 전환
 			while (rs.next()) {
-				//	Java 객체로 전환
+				// Java 객체로 전환
 				Long no = rs.getLong("no");
 				String name = rs.getString("name");
 				String pass = rs.getString("password");
 				String content = rs.getString("content");
 				Date createdAt = rs.getDate("reg_date");
-				
+
 				GuestBookVo vo = new GuestBookVo(no, name, pass, content, createdAt);
 				list.add(vo);
-				}
-				
-			}catch(SQLException e) {
-				e.printStackTrace();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-			} finally {
-				try {
-					if (stmt != null)
-						stmt.close();
-					if (conn != null)
-						conn.close();
-					if (rs != null)
-						rs.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 			}
-		
+		}
+
 		return list;
 	}
 
@@ -105,9 +105,9 @@ public class GuestBookDaoImple implements GuestBookDao {
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getPass());
 			pstmt.setString(3, vo.getContent());
-			
+
 			insertCount = pstmt.executeUpdate();
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -126,34 +126,34 @@ public class GuestBookDaoImple implements GuestBookDao {
 
 	@Override
 	public boolean delete(String pass, Long no) {
-		 Connection conn = null;
-		    PreparedStatement pstmt = null;
-		    int deleteCount = 0;
-		    
-		    try {
-		        conn = getConnection();
-		        String sql = "DELETE FROM guestbook WHERE no = ?";
-		        // PreparedStatment
-		        pstmt = conn.prepareStatement(sql);
-		        // 데이터 바인딩
-		        pstmt.setLong(1, no); // Long 타입으로 설정
-		        deleteCount = pstmt.executeUpdate();
-		    } catch(SQLException e) {
-		        e.printStackTrace();
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		    } finally {
-		        try {
-		            if (pstmt != null)
-		                pstmt.close();
-		            if (conn != null)
-		                conn.close();
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        }
-		    }
-		    return deleteCount == 1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int deleteCount = 0;
+
+		try {
+			conn = getConnection();
+			String sql = "DELETE FROM guestbook WHERE no = ?";
+			// PreparedStatment
+			pstmt = conn.prepareStatement(sql);
+			// 데이터 바인딩
+			pstmt.setLong(1, no); // Long 타입으로 설정
+			deleteCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		return deleteCount == 1;
+	}
 
 	@Override
 	public GuestBookVo get(Long id) {
@@ -177,16 +177,14 @@ public class GuestBookDaoImple implements GuestBookDao {
 				String password = rs.getString("password");
 				String content = rs.getString("content");
 				Date regDate = rs.getDate("reg_date");
-				
+
 				vo = new GuestBookVo(no, name, password, content, regDate);
 			}
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return vo;
 	}
-	
-	
 
 }
